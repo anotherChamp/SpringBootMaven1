@@ -1,6 +1,7 @@
 package com.anuja.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,8 @@ public class SignUpDAO {
 
 	public boolean registerUser(UserPojo userPojo)
 	{
-		String sql = "insert into users (username,password,name,email) values ("+userPojo.getUsername()+","+userPojo.getPassword()+","+userPojo.getName()+","+userPojo.getEmail()+")";
-		
-		if(jdbcTemplate.update(sql)>0)
-		{
+		String sql = "insert into users (username,password,name,email) values ('"+userPojo.getUsername()+"','"+userPojo.getPassword()+"','"+userPojo.getName()+"','"+userPojo.getEmail()+"')";
+		if (jdbcTemplate.update(sql) > 0) {
 			return true;
 		}
 		return false;
